@@ -8,9 +8,9 @@
 
 Antes de iniciar debes instalar las siguientes herramientas, evaluar tu código e identificar posibles mejoras.
 
-- [ ] [Instalar y utilizar Rubocop](https://github.com/bright-coders/commons/tree/master/topics/rubocop)
-- [ ] [Instalar y utilizar Rubycritic](https://github.com/bright-coders/commons/tree/master/topics/rubycritic)
-- [ ] [Instalar y utilizar SandiMeter](https://github.com/makaroni4/sandi_meter)
+- [x] [Instalar y utilizar Rubocop](https://github.com/bright-coders/commons/tree/master/topics/rubocop)
+- [x] [Instalar y utilizar Rubycritic](https://github.com/bright-coders/commons/tree/master/topics/rubycritic)
+- [x] [Instalar y utilizar SandiMeter](https://github.com/makaroni4/sandi_meter)
 
 ## Requerimientos funcionales
 
