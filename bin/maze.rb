@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Laberinto
+class Maze
 
   def initialize(grid)
     @grid = grid
