@@ -27,13 +27,13 @@ Incomplete list of things the game needs:
 - [ ] pacman moves on each tick
 - [x] user can rotate pacman
 - [x] pacman eats dots
-- [ ] pacman wraps around
+- [x] pacman wraps around
 - [x] pacman stops on wall
 - [x] pacman will not rotate into a wall
 - [ ] game score (levels completed, number of dots eaten in this level)
 - [ ] monsters…
 - [ ] levels
-- [ ] animate pacman eating (mouth opens and closes)
+- [x] animate pacman eating (mouth opens and closes)
 
 ### Clues
 

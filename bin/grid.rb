@@ -17,8 +17,8 @@ class Grid
       laberinto.generate_maze
       for row in 0..(@height - 1 )
         for column in 0..(@width - 1)
-          @grid[row][column] = 2 if row == 0 || row == @height - 1
-          @grid[row][column] = 1 if column == 0 || column == @width - 1
+          @grid[row][column] = 3 if row == 0 || row == @height - 1
+          @grid[row][column] = 4 if column == 0 || column == @width - 1
         end
       end
       @grid
@@ -29,8 +29,25 @@ class Grid
         row.each do |column|
           print " ▬ ".blue if column == 2
           print " ▌ ".blue if column == 1 
-          print " • ".peach if column == 0
+          print " ▬ ".blue if column == 3
+          print " ▌ ".blue if column == 4 
+          print " • ".white if column == 0
           show_pacman(pacman) if column == 7
+          print "   " if column == 6
+        end
+        puts
+      end
+    end
+
+    def show_maze_two(pacman)
+      @grid.each do |row|
+        row.each do |column|
+          print " ▬ ".blue if column == 2
+          print " ▌ ".blue if column == 1 
+          print " ▬ ".blue if column == 3
+          print " ▌ ".blue if column == 4
+          print " • ".white if column == 0
+          show_pacman_two(pacman) if column == 7
           print "   " if column == 6
         end
         puts
@@ -43,4 +60,17 @@ class Grid
       print " Ո ".yellow if pacman.direction == 3
       print " Ɔ ".yellow if pacman.direction == 4
     end
+
+    def show_pacman_two(pacman)
+      print " u ".yellow if pacman.direction == 1
+      print " c ".yellow if pacman.direction == 2
+      print " n ".yellow if pacman.direction == 3
+      print " ͻ ".yellow if pacman.direction == 4
+    end
 end
+
+#u
+#c
+#n
+#ͻ
+
