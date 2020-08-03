@@ -11,6 +11,7 @@ class Maze
         set_horizontal_wall([4, 6], [4, 5, -5, -6])
         set_vertical_wall([3, 4, -4, -5], [2, -3])
         set_vertical_wall([1, 2, -2, -3], [5, -6])
+        set_vertical_wall([5], [7,12])
       end
 
       def set_horizontal_wall(rows, columns)

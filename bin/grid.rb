@@ -33,7 +33,7 @@ class Grid
           print " ▌ ".blue if column == 4 
           print " • ".white if column == 0
           show_pacman(pacman) if column == 7
-          print "   " if column == 6
+          print " ▲ ".red if column == 8
         end
         puts
       end
@@ -49,6 +49,7 @@ class Grid
           print " • ".white if column == 0
           show_pacman_two(pacman) if column == 7
           print "   " if column == 6
+          print " ▲ ".red if column == 8
         end
         puts
       end

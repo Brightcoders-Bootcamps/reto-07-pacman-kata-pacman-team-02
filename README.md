@@ -24,7 +24,7 @@ Incomplete list of things the game needs:
 
 - [x] pacman is on a grid filled with dots
 - [x] pacman has a direction
-- [ ] pacman moves on each tick
+- [x] pacman moves on each tick
 - [x] user can rotate pacman
 - [x] pacman eats dots
 - [x] pacman wraps around
