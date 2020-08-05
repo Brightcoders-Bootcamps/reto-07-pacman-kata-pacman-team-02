@@ -1,8 +1,7 @@
-require_relative "grid"
-require_relative "pacman"
-require_relative "ghosts"
+require_relative 'grid'
+require_relative 'pacman'
+require_relative 'ghosts'
 require 'io/console'
-
 class App
   def initialize
     @grid = Grid.new(20, 11)
@@ -13,20 +12,20 @@ class App
 
   def start
     @complete_grid = @grid.generate_maze
-    @ghost1 = Ghosts.new(5,8, @complete_grid)
-    @ghost2 = Ghosts.new(5,9, @complete_grid) 
-    @ghost3 = Ghosts.new(5,10, @complete_grid) 
-    @ghost4 = Ghosts.new(5,11, @complete_grid)
-    #@ghost1.show_ghost(@complete_grid)
-    #@ghost2.show_ghost(@complete_grid)
-    #@ghost3.show_ghost(@complete_grid)
-    #@ghost4.show_ghost(@complete_grid)
-    ##Ghosts.open_ghost_container(@complete_grid)
-    #@ghost4.open_ghost_container(@complete_grid)
-    #@complete_grid[4][8] = 6
-    #@complete_grid[4][9] = 6
-    #@complete_grid[4][10] = 6
-    #@complete_grid[5][8] = 8
+    @ghost1 = Ghosts.new(5, 8, @complete_grid)
+    @ghost2 = Ghosts.new(5, 9, @complete_grid)
+    @ghost3 = Ghosts.new(5, 10, @complete_grid)
+    @ghost4 = Ghosts.new(5, 11, @complete_grid)
+    # @ghost1.show_ghost(@complete_grid)
+    # @ghost2.show_ghost(@complete_grid)
+    # @ghost3.show_ghost(@complete_grid)
+    # @ghost4.show_ghost(@complete_grid)
+    # #Ghosts.open_ghost_container(@complete_grid)
+    # @ghost4.open_ghost_container(@complete_grid)
+    # @complete_grid[4][8] = 6
+    # @complete_grid[4][9] = 6
+    # @complete_grid[4][10] = 6
+    # @complete_grid[5][8] = 8
 
     # @complete_grid = @ghost1.position_ghosts(@complete_grid)
     # @complete_grid = @ghost2.position_ghosts(@complete_grid)
@@ -43,20 +42,20 @@ class App
         @score = 0
       end
       if prev_value == :gameover
-        puts "Game Over"
+        puts 'Game Over'
         break
       end
-      if !@jump
+      unless @jump
         puts "You press #{char}"
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze_two(@pacman)
         sleep(0.1)
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level #{@level}"
+        puts 'Level #{@level}'
         puts "Score #{@score}"
         @grid.show_maze(@pacman)
       end
@@ -69,13 +68,13 @@ class App
         puts "You press #{char}"
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze_two(@pacman)
         sleep(0.1)
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze(@pacman)
       when 'B'
@@ -84,13 +83,13 @@ class App
         puts "You press #{char}"
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze_two(@pacman)
         sleep(0.1)
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze(@pacman)
       when 'C'
@@ -99,13 +98,13 @@ class App
         puts "You press #{char}"
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze_two(@pacman)
         sleep(0.1)
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze(@pacman)
       when 'D'
@@ -114,27 +113,31 @@ class App
         puts "You press #{char}"
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze_two(@pacman)
         sleep(0.1)
         system('cls') || system('clear')
         puts "\tPacman game"
-        puts "Level 1"
+        puts 'Level 1'
         puts "Score #{@score}"
         @grid.show_maze(@pacman)
       when 'Q'
         break
       end
       prev_value = @ghost1.intelligent_move(@pacman.position_x, @pacman.position_y, prev_value)
-      #@ghost2.intelligent_move(@complete_grid, @pacman, prev_value)
-      #@ghost3.random_move(@complete_grid, rand(1..10), rand(1..5))
-      #@ghost4.random_move(@complete_grid, rand(11..19), rand(6..10))
-      system("stty raw -echo")
-      char = STDIN.read_nonblock(1) rescue nil
-      system("stty -raw echo")
+      # @ghost2.intelligent_move(@complete_grid, @pacman, prev_value)
+      # @ghost3.random_move(@complete_grid, rand(1..10), rand(1..5))
+      # @ghost4.random_move(@complete_grid, rand(11..19), rand(6..10))
+      system('stty raw -echo')
+      char = begin
+               STDIN.read_nonblock(1)
+             rescue StandardError
+               nil
+             end
+      system('stty -raw echo')
       puts "You press #{char}"
-      if char != @test && char != nil
+      if char != @test && !char.nil?
         @test = char
         @jump = true
       end

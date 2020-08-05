@@ -77,3 +77,12 @@ if @grid[4][3] == 1 entonces print "|"
 |
 |
 ---------------------------
+
+print '▀▀▀'.blue if column == :horizontal
+        print ' █ '.blue if column == :vertical
+        print '▀▀▀'.blue if column == 3
+        print ' █ '.blue if column == 4
+        print ' • '.white if column == 0
+        show_pacman_two(pacman) if column == 7
+        print '   ' if column == 6
+        print ' ▲ '.red if column == 8
