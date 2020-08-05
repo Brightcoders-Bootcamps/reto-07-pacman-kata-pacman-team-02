@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require_relative('maze')
+require_relative('maze_two')
 
 # This is the class to create a grid to the game
 class Grid
@@ -13,7 +13,7 @@ class Grid
     end
 
     def generate_maze
-      laberinto = Maze.new(@grid)
+      laberinto = MazeTwo.new(@grid)
       laberinto.generate_maze
       for row in 0..(@height - 1 )
         for column in 0..(@width - 1)
@@ -27,12 +27,13 @@ class Grid
     def show_maze(pacman)
       @grid.each do |row|
         row.each do |column|
-          print " ▬ ".blue if column == 2
-          print " ▌ ".blue if column == 1 
-          print " ▬ ".blue if column == 3
-          print " ▌ ".blue if column == 4 
+          print "▀▀▀".blue if column == :horizontal
+          print " █ ".blue if column == :vertical
+          print "▀▀▀".blue if column == 3
+          print " █ ".blue if column == 4 
           print " • ".white if column == 0
           show_pacman(pacman) if column == 7
+          print "   " if column == 6
           print " ▲ ".red if column == 8
         end
         puts
@@ -42,10 +43,10 @@ class Grid
     def show_maze_two(pacman)
       @grid.each do |row|
         row.each do |column|
-          print " ▬ ".blue if column == 2
-          print " ▌ ".blue if column == 1 
-          print " ▬ ".blue if column == 3
-          print " ▌ ".blue if column == 4
+          print "▀▀▀".blue if column == :horizontal
+          print " █ ".blue if column == :vertical
+          print "▀▀▀".blue if column == 3
+          print " █ ".blue if column == 4
           print " • ".white if column == 0
           show_pacman_two(pacman) if column == 7
           print "   " if column == 6

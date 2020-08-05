@@ -1,5 +1,5 @@
 class Pacman
-    attr_reader :position_x, :position_y, :direction,
+    attr_reader :position_x, :position_y, :direction
   
     def initialize(position_x, position_y, direction)
       @position_x = position_x
@@ -11,11 +11,10 @@ class Pacman
       @direction = direction
       prev_x = @position_x
       prev_y = @position_y
-      @position_x -= 1 if direction == 1 && (grid[@position_x - 1][@position_y] != 2 && grid[@position_x - 1][@position_y] != 1)  # Arriba
-      @position_y += 1 if direction == 2 && (grid[@position_x][@position_y + 1] != 2 && grid[@position_x][@position_y + 1] != 1)  # Derecha
-      @position_x += 1 if direction == 3 && (grid[@position_x + 1][@position_y] != 2 && grid[@position_x + 1][@position_y] != 1)  # Abajo
-      @position_y -= 1 if direction == 4 && (grid[@position_x][@position_y - 1] != 2 && grid[@position_x][@position_y - 1] != 1)  # Izquierda
-     
+      @position_x -= 1 if direction == 1 && (grid[@position_x - 1][@position_y] != :horizontal && grid[@position_x - 1][@position_y] != :vertical)  # Arriba
+      @position_y += 1 if direction == 2 && (grid[@position_x][@position_y + 1] != :horizontal && grid[@position_x][@position_y + 1] != :vertical)  # Derecha
+      @position_x += 1 if direction == 3 && (grid[@position_x + 1][@position_y] != :horizontal && grid[@position_x + 1][@position_y] != :vertical)  # Abajo
+      @position_y -= 1 if direction == 4 && (grid[@position_x][@position_y - 1] != :horizontal && grid[@position_x][@position_y - 1] != :vertical)  # Izquierda 
       eats(prev_x, prev_y, grid, direction, score)
     end
 
@@ -48,5 +47,6 @@ class Pacman
         grid[prev_x][prev_y] = 6
         score +=1
       end
+      score
     end
   end

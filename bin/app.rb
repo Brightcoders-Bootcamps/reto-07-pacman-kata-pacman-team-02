@@ -20,6 +20,7 @@ class App
     @ghost2.show_ghost(@complete_grid)
     @ghost3.show_ghost(@complete_grid)
     @ghost4.show_ghost(@complete_grid)
+    Ghosts.open_ghost_container(@complete_grid)
     #@ghost4.open_ghost_container(@complete_grid)
     #@complete_grid[4][8] = 6
     #@complete_grid[4][9] = 6
@@ -34,32 +35,38 @@ class App
     @test = 'W'
     loop do 
       system('cls') || system('clear')
+      puts "\tPacman game"
       puts "Level 1"
-      puts "Score #{@final_score}"
+      puts "Score #{@score}"
       @grid.show_maze_two(@pacman)
       sleep(0.1)
       system('cls') || system('clear')
+      puts "\tPacman game"
       puts "Level 1"
-      puts "Score #{@final_score}"
+      puts "Score #{@score}"
       @grid.show_maze(@pacman)
       case @test
       when 'W'
         puts "Ingresa enter para iniciar"
       when 'A'
-        @pacman.move(1, @complete_grid, @score)
+        @score = @pacman.move(1, @complete_grid, @score)
         @test = 'A'
       when 'B'
-        @pacman.move(3, @complete_grid, @score)
+        @score = @pacman.move(3, @complete_grid, @score)
         @test = 'B'
       when 'C'
-        @pacman.move(2, @complete_grid, @score)
+        @score = @pacman.move(2, @complete_grid, @score)
         @test = 'C'
       when 'D'
-        @pacman.move(4, @complete_grid, @score)
+        @score = @pacman.move(4, @complete_grid, @score)
         @test = 'D'
       when 'Q'
         break
       end
+      @ghost1.intelligent_move(@complete_grid, @pacman)
+      @ghost2.intelligent_move(@complete_grid, @pacman)
+      @ghost3.random_move(@complete_grid, rand(1..10), rand(1..5))
+      @ghost4.random_move(@complete_grid, rand(11..19), rand(6..10))
       system("stty raw -echo")
       char = STDIN.read_nonblock(1) rescue nil
       system("stty -raw echo")
@@ -67,13 +74,6 @@ class App
         @test = char
       end
       sleep(0.5)
-    end
-  end
-
-  def score(grid, eats)
-    @final_score = final_score
-    if eats == 0 
-    final_score += 1 
     end
   end
 
