@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'colorize'
-require_relative('maze_two')
+require_relative('maze_level_one')
+require_relative('maze_level_two')
 
 # This is the class to create a grid to the game
 class Grid
@@ -13,7 +14,19 @@ class Grid
     end
 
     def generate_maze
-      laberinto = MazeTwo.new(@grid)
+      laberinto = MazeLevelOne.new(@grid)
+      laberinto.generate_maze
+      for row in 0..(@height - 1 )
+        for column in 0..(@width - 1)
+          @grid[row][column] = 3 if row == 0 || row == @height - 1
+          @grid[row][column] = 4 if column == 0 || column == @width - 1
+        end
+      end
+      @grid
+    end
+
+    def generate_maze_level_two
+      laberinto = MazeLevelTwo.new(@grid)
       laberinto.generate_maze
       for row in 0..(@height - 1 )
         for column in 0..(@width - 1)

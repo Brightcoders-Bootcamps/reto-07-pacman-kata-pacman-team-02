@@ -24,28 +24,28 @@ class Pacman
         grid[@position_x][@position_y] = 7
       elsif grid[@position_x][@position_y] == 3 && direction == 1
         grid[prev_x][prev_y] = 6 
-        score +=1
+        score +=1 if grid[@position_x][@position_y] == 0
         @position_x = grid.length - 2
         grid[@position_x][@position_y] = 7
       elsif grid[@position_x][@position_y] == 3 && direction == 3
+        score +=1 if grid[@position_x][@position_y] == 0
         grid[prev_x][prev_y] = 6
-        score +=1
         @position_x = 1
         grid[@position_x][@position_y] = 7
       elsif grid[@position_x][@position_y] == 4 && direction == 2
+        score +=1 if grid[@position_x][@position_y] == 0
         grid[prev_x][prev_y] = 6
-        score +=1
         @position_y = 1
         grid[@position_x][@position_y] = 7
       elsif grid[@position_x][@position_y] == 4 && direction == 4
+        score +=1 if grid[@position_x][@position_y] == 0
         grid[prev_x][prev_y] = 6
-        score +=1
         @position_y = grid[0].length - 2
         grid[@position_x][@position_y] = 7
       else 
+        score +=1 if grid[@position_x][@position_y] == 0
         grid[@position_x][@position_y] = 7
         grid[prev_x][prev_y] = 6
-        score +=1
       end
       score
     end
