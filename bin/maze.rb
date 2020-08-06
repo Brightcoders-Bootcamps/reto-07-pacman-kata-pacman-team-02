@@ -20,13 +20,14 @@ class Maze
     horizontal
     vertical
     generate_maze(width, height)
+    @grid
   end
 
   def generate_maze(width, height)
-    (0..height - 1).each do |row|
-      (0..width - 1).each do |column|
-        @grid[row][column] = 3 if row.zero? || row == height - 1
-        @grid[row][column] = 4 if column.zero? || column == width - 1
+    (0..height).each do |row|
+      (0..width).each do |column|
+        @grid[row][column] = :horizontal_border if row.zero? || row == height
+        @grid[row][column] = :vertical_border if column.zero? || column == width
       end
     end
   end

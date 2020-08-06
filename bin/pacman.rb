@@ -1,20 +1,23 @@
 # frozen_string_literal: true
 
-class Pacman
+require_relative('movement')
+
+# Pacman class to move pacman
+class Pacman < PacmanMovement
   attr_reader :position_x, :position_y, :direction
 
   MINI = {
-    TOP: 'u',
-    RIGHT: 'c',
-    DOWN: 'n',
-    LEFT: 'ͻ'
+    UP: ' u ',
+    RIGHT: ' c ',
+    DOWN: ' n ',
+    LEFT: ' ͻ '
   }.freeze
 
   BIG = {
-    UP: 'Ս',
-    RIGHT: 'C',
-    DOWN: 'Ո',
-    LEFT: 'Ɔ'
+    UP: ' Ս ',
+    RIGHT: ' C ',
+    DOWN: ' Ո ',
+    LEFT: ' Ɔ '
   }.freeze
 
   def initialize(position_x, position_y, direction)

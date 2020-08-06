@@ -1,24 +1,21 @@
 # frozen_string_literal: true
 
-# This class is to pacman can move
+require_relative 'eats'
 
-class PacmanMovement
+# This class is to pacman can move
+class PacmanMovement < Eats
   def move(direction, grid, score)
     @direction = direction
     prev_x = @position_x
     prev_y = @position_y
-    if direction == 1 && (grid[@position_x - 1][@position_y] != :horizontal && grid[@position_x - 1][@position_y] != :vertical)
-      @position_x -= 1
-      end  # Arriba
-    if direction == 2 && (grid[@position_x][@position_y + 1] != :horizontal && grid[@position_x][@position_y + 1] != :vertical)
-      @position_y += 1
-      end  # Derecha
-    if direction == 3 && (grid[@position_x + 1][@position_y] != :horizontal && grid[@position_x + 1][@position_y] != :vertical)
-      @position_x += 1
-      end  # Abajo
-    if direction == 4 && (grid[@position_x][@position_y - 1] != :horizontal && grid[@position_x][@position_y - 1] != :vertical)
-      @position_y -= 1
-      end  # Izquierda
+    @position_x -= 1 if direction == :UP && valid_movement(@position_x - 1, @position_y, grid)
+    @position_y += 1 if direction == :RIGHT && valid_movement(@position_x, @position_y + 1, grid)
+    @position_x += 1 if direction == :BOTTOM && valid_movement(@position_x + 1, @position_y, grid)
+    @position_y -= 1 if direction == :LEFT && valid_movement(@position_x, @position_y - 1, grid)
     eats(prev_x, prev_y, grid, direction, score)
+  end
+
+  def valid_movement(position_x, position_y, grid)
+    !(%i[vertical horizontal].include? grid[position_x][position_y])
   end
 end

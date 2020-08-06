@@ -3,6 +3,7 @@
 require_relative 'grid'
 require_relative 'pacman'
 require_relative 'ghosts'
+require_relative 'movement'
 require 'io/console'
 
 # This class start the game
@@ -15,11 +16,7 @@ class App
   end
 
   def start
-    @complete_grid = @grid.generate_maze
-    @ghost1 = Ghosts.new(5, 8, @complete_grid)
-    @ghost2 = Ghosts.new(5, 9, @complete_grid)
-    @ghost3 = Ghosts.new(5, 10, @complete_grid)
-    @ghost4 = Ghosts.new(5, 11, @complete_grid)
+    @final_grid = @grid.generate_maze
 
     char = 'W'
     @test = 'W'
@@ -28,46 +25,36 @@ class App
     loop do
       if @score == 103
         @level = 2
-        @complete_grid = @grid.generate_maze_level_two
+        @grid.generate_maze_level_two
         @score = 0
       end
       if prev_value == :gameover
         puts 'Game Over'
         break
       end
-      print_board unless @jump
+      print_game unless @jump
       case @test
-      when 'W'
-        puts 'Ingresa enter para iniciar'
       when 'A'
-        @score = @pacman.move(1, @complete_grid, @score)
+        @score = @pacman.move(:UP, @final_grid, @score)
         @test = 'A'
-        print_board
+        print_game
       when 'B'
-        @score = @pacman.move(3, @complete_grid, @score)
+        @score = @pacman.move(:BOTTOM, @final_grid, @score)
         @test = 'B'
-        print_board
+        print_game
       when 'C'
-        @score = @pacman.move(2, @complete_grid, @score)
+        @score = @pacman.move(:RIGHT, @final_grid, @score)
         @test = 'C'
-        print_board
+        print_game
       when 'D'
-        @score = @pacman.move(4, @complete_grid, @score)
+        @score = @pacman.move(:LEFT, @final_grid, @score)
         @test = 'D'
-        print_board
+        print_game
       when 'Q'
         break
       end
-      prev_value = @ghost1.intelligent_move(@pacman.position_x, @pacman.position_y, prev_value)
-
-      system('stty raw -echo')
-      char = begin
-               STDIN.read_nonblock(1)
-             rescue StandardError
-               nil
-             end
-      system('stty -raw echo')
-      puts "You press #{char}"
+      # prev_value = @ghost1.intelligent_move(@pacman.position_x, @pacman.position_y, prev_value)
+      char = user_data
       if char != @test && !char.nil?
         @test = char
         @jump = true
@@ -76,19 +63,36 @@ class App
     end
   end
 
-  def print_board
-    system('cls') || system('clear')
-    puts "\tPacman game"
-    puts 'Level 1'
-    puts "Score #{@score}"
-    @grid.show_maze(Pacman::BIG[@pacman.direction])
-    # @grid.show_maze(Pacman::BIG[@pacman.direction])
+  def user_data
+    system('stty raw -echo')
+      char = begin
+               STDIN.read_nonblock(1)
+             rescue StandardError
+               nil
+             end
+    system('stty -raw echo')
+    char
+  end
+
+  def print_game
+    print_board(Pacman::BIG[@pacman.direction])
     sleep(0.1)
+    print_board(Pacman::MINI[@pacman.direction])
+  end
+
+  def start_ghosts
+    @intelligent_ghots      = Ghosts.new(5,8, :left)
+    @most_intelligent_ghost = Ghosts.new(5,9, :left) 
+    @random_ghost           = Ghosts.new(5,10, :left) 
+    @most_random_ghost      = Ghosts.new(5,11, :left)
+  end
+
+  def print_board(pacman)
     system('cls') || system('clear')
     puts "\tPacman game"
-    puts 'Level #{@level}'
+    puts "Level #{@level}"
     puts "Score #{@score}"
-    @grid.show_maze(Pacman::MINI[@pacman.direction])
+    @grid.show_maze(pacman)
   end
 end
 
