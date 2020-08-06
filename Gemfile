@@ -13,3 +13,7 @@ gem 'rubocop'
 gem 'rubycritic'
 gem 'rubycritic-small-badge'
 gem 'sandi_meter'
+
+group :test, :development do
+  gem 'pry'
+end

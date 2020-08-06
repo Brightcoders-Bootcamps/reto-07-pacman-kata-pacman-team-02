@@ -1,19 +1,24 @@
-class Movement
-  def x_position(dir_x)
-    unless dir_x.zero?
-      @position_x -= 1 if dir_x.negative? && valid_position(@position_x - 1, @position_y)
-      @position_x += 1 if dir_x.positive? && valid_position(@position_x + 1, @position_y)
-    end
-  end
+# frozen_string_literal: true
 
-  def y_position(dir_y)
-    unless dir_y.zero?
-      @position_y -= 1 if dir_y.negative? && valid_position(@position_x, @position_y - 1)
-      @position_y += 1 if dir_y.positive? && valid_position(@position_x, @position_y + 1)
-    end
-   end
+# This class is to pacman can move
 
-  def valid_position(position_x, position_y)
-    !(%i[vertical horizontal].include? @grid[position_x][position_y])
+class PacmanMovement
+  def move(direction, grid, score)
+    @direction = direction
+    prev_x = @position_x
+    prev_y = @position_y
+    if direction == 1 && (grid[@position_x - 1][@position_y] != :horizontal && grid[@position_x - 1][@position_y] != :vertical)
+      @position_x -= 1
+      end  # Arriba
+    if direction == 2 && (grid[@position_x][@position_y + 1] != :horizontal && grid[@position_x][@position_y + 1] != :vertical)
+      @position_y += 1
+      end  # Derecha
+    if direction == 3 && (grid[@position_x + 1][@position_y] != :horizontal && grid[@position_x + 1][@position_y] != :vertical)
+      @position_x += 1
+      end  # Abajo
+    if direction == 4 && (grid[@position_x][@position_y - 1] != :horizontal && grid[@position_x][@position_y - 1] != :vertical)
+      @position_y -= 1
+      end  # Izquierda
+    eats(prev_x, prev_y, grid, direction, score)
   end
 end
