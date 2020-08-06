@@ -1,3 +1,5 @@
+![Coverage](badges/rubycritic_badge_score.svg)
+
 ![BrightCoders Logo](img/logo-bc.png)
 
 # PacMan Kata
@@ -31,8 +33,8 @@ Incomplete list of things the game needs:
 - [x] pacman stops on wall
 - [x] pacman will not rotate into a wall
 - [x] game score (levels completed, number of dots eaten in this level)
-- [ ] monsters…
-- [ ] levels
+- [x] monsters…
+- [x] levels
 - [x] animate pacman eating (mouth opens and closes)
 
 ### Clues

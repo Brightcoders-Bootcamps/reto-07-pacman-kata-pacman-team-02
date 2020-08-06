@@ -1,6 +1,6 @@
 class GhostMovement
   def move_ghost(prev_position_x, prev_position_y, previous_state)
-    grid[@position_x][@position_y] = 8
+    grid[@position_x][@position_y] = :ghost
     unless prev_position_x == @position_x && prev_position_y == @position_y
       grid[prev_position_x][prev_position_y] = previous_state
     end

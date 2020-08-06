@@ -8,11 +8,16 @@ class PacmanMovement < Eats
     @direction = direction
     prev_x = @position_x
     prev_y = @position_y
+    pacman_direction(direction, grid)
+    score = eats(prev_x, prev_y, grid, score)
+    score
+  end
+
+  def pacman_direction(direction, grid)
     @position_x -= 1 if direction == :UP && valid_movement(@position_x - 1, @position_y, grid)
     @position_y += 1 if direction == :RIGHT && valid_movement(@position_x, @position_y + 1, grid)
-    @position_x += 1 if direction == :BOTTOM && valid_movement(@position_x + 1, @position_y, grid)
+    @position_x += 1 if direction == :DOWN && valid_movement(@position_x + 1, @position_y, grid)
     @position_y -= 1 if direction == :LEFT && valid_movement(@position_x, @position_y - 1, grid)
-    eats(prev_x, prev_y, grid, direction, score)
   end
 
   def valid_movement(position_x, position_y, grid)
