@@ -1,4 +1,6 @@
-class WrapsAround
+require_relative 'pacman_direction'
+
+class WrapsAround < PacmanDirection
   attr_reader :position_x, :position_y
 
   def wraps_around(current_position, prev_x, prev_y, grid, score)
