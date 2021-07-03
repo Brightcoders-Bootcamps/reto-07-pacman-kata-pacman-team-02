@@ -1,3 +1,5 @@
+![Coverage](badges/rubycritic_badge_score.svg)
+
 ![BrightCoders Logo](img/logo-bc.png)
 
 # PacMan Kata
@@ -8,9 +10,9 @@
 
 Antes de iniciar debes instalar las siguientes herramientas, evaluar tu código e identificar posibles mejoras.
 
-- [ ] [Instalar y utilizar Rubocop](https://github.com/bright-coders/commons/tree/master/topics/rubocop)
-- [ ] [Instalar y utilizar Rubycritic](https://github.com/bright-coders/commons/tree/master/topics/rubycritic)
-- [ ] [Instalar y utilizar SandiMeter](https://github.com/makaroni4/sandi_meter)
+- [x] [Instalar y utilizar Rubocop](https://github.com/bright-coders/commons/tree/master/topics/rubocop)
+- [x] [Instalar y utilizar Rubycritic](https://github.com/bright-coders/commons/tree/master/topics/rubycritic)
+- [x] [Instalar y utilizar SandiMeter](https://github.com/makaroni4/sandi_meter)
 
 ## Requerimientos funcionales
 
@@ -22,18 +24,18 @@ Pacman finds himself in a grid filled with monsters. Will he be able to eat all 
 
 Incomplete list of things the game needs:
 
-- [ ] pacman is on a grid filled with dots
-- [ ] pacman has a direction
-- [ ] pacman moves on each tick
-- [ ] user can rotate pacman
-- [ ] pacman eats dots
-- [ ] pacman wraps around
-- [ ] pacman stops on wall
-- [ ] pacman will not rotate into a wall
-- [ ] game score (levels completed, number of dots eaten in this level)
-- [ ] monsters…
-- [ ] levels
-- [ ] animate pacman eating (mouth opens and closes)
+- [x] pacman is on a grid filled with dots
+- [x] pacman has a direction
+- [x] pacman moves on each tick
+- [x] user can rotate pacman
+- [x] pacman eats dots
+- [x] pacman wraps around
+- [x] pacman stops on wall
+- [x] pacman will not rotate into a wall
+- [x] game score (levels completed, number of dots eaten in this level)
+- [x] monsters…
+- [x] levels
+- [x] animate pacman eating (mouth opens and closes)
 
 ### Clues
 
